@@ -2,10 +2,21 @@ package com.example.til
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.til.connectdownlatch.ConnectLatch
 
 class MainActivity : AppCompatActivity() {
+
+    private val connectLatch by lazy { ConnectLatch() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        connectLatch.start()
+
+
+        connectLatch.stop()
+
     }
 }
