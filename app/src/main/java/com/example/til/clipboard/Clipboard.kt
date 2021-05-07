@@ -5,8 +5,7 @@ import android.content.Context
 import androidx.core.content.getSystemService
 
 class Clipboard {
-
-
+    
     fun getClipboardText(context: Context): String? {
         val clipboardManager = context.getSystemService<ClipboardManager>()
         return clipboardManager?.getClipboardText(context)
