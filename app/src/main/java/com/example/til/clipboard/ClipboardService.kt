@@ -5,8 +5,11 @@ import android.content.ClipboardManager
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 
-class ClipboardService : Service(), ClipboardManager.OnPrimaryClipChangedListener {
+class ClipboardService : Service(), ClipboardManager.OnPrimaryClipChangedListener, LifecycleObserver {
 
     private val clipboard = Clipboard()
 
@@ -31,5 +34,16 @@ class ClipboardService : Service(), ClipboardManager.OnPrimaryClipChangedListene
     override fun onDestroy() {
         Log.d("결과", "onDestroy")
         super.onDestroy()
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    private fun startBackground() {
+        Log.d("결과", "startBackground")
+
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    private fun startForeground() {
+        Log.d("결과", "startForeground")
     }
 }
