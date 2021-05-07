@@ -43,3 +43,31 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }
+
+// live data
+dependencies {
+    def lifecycleVersion = "2.2.0"
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:${lifecycleVersion}"
+    // alternatively - just ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleVersion}"
+    // use -ktx for Kotlin
+    // alternatively - just LiveData
+//    implementation "androidx.lifecycle:lifecycle-livedata:${lifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleVersion}"
+
+    // alternatively - Lifecycles only (no ViewModel or LiveData).
+    //     Support library depends on this lightweight import
+    implementation "androidx.lifecycle:lifecycle-runtime:${lifecycleVersion}"
+
+//    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0' // use kapt for Kotlin
+    // alternately - if using Java8, use the following instead of compiler
+    implementation "androidx.lifecycle:lifecycle-common-java8:${lifecycleVersion}"
+
+    // optional - ReactiveStreams support for LiveData
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:${lifecycleVersion}"
+
+    // optional - Test helpers for LiveData
+//    testImplementation "androidx.arch.core:core-testing:${lifecycleVersion}"
+    testImplementation "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleVersion}"
+}
