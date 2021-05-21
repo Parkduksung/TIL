@@ -1,7 +1,11 @@
 package com.example.til.clipboard
 
+import android.annotation.SuppressLint
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 
 class Clipboard {
@@ -14,6 +18,12 @@ class Clipboard {
     fun setClipboardListener(context: Context, clipChangedListener: ClipboardManager.OnPrimaryClipChangedListener) {
         context.getSystemService<ClipboardManager>()?.addPrimaryClipChangedListener(clipChangedListener)
     }
+
+    fun clearClipboardText(context: Context) {
+        val clipboardManager = context.getSystemService<ClipboardManager>()
+//        clipboardManager?.
+    }
+
 
 }
 
@@ -28,4 +38,10 @@ fun ClipboardManager.getClipboardText(context: Context): String? {
         }
     }
     return null
+}
+
+fun ClipboardManager.setClipboardText(context: Context) {
+    val clipboardManager = context.getSystemService<ClipboardManager>()
+    clipboardManager?.text = null
+
 }

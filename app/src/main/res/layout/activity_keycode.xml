@@ -4,34 +4,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <EditText
-        android:id="@+id/input_et"
+        android:id="@+id/input_text_et"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:hint="Input Any Text"
-        app:layout_constraintBottom_toBottomOf="@id/clipboard_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent=".8" />
-
-
-    <Button
-        android:id="@+id/clipboard_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Get Clipboard"
+        android:hint="input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias=".3"
+        app:layout_constraintWidth_percent=".8" />
 
-    <Button
-        android:id="@+id/clipboard_clear_btn"
+
+    <TextView
+        android:id="@+id/keycode_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Clear Clipboard"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

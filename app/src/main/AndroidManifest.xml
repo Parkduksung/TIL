@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.TIL">
-        <activity android:name=".mp4.MediaPlayActivity">
+        <activity android:name=".stringcomparison.StringComparisonActivity" android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
