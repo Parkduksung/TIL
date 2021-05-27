@@ -11,7 +11,7 @@ class StringComparisonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_string_comparison)
 
-        if("6.0.16.1" >= "6.0.15.21"){
+        if("6.0.16.1" >= "6.0.a.1"){
             Log.d("결과", "참")
         }else{
             Log.d("결과", "비교가 안됨.")
