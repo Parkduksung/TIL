@@ -28,6 +28,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".communicationactivity.BCommunicationActivity"/>
+        <activity android:name=".communicationactivity.CCommunicationActivity"/>
+
 
         <service android:name=".clipboard.ClipboardService" />
         <activity android:name=".mp4.MP4MainActivity" />
