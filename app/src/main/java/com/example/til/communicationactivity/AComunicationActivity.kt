@@ -21,9 +21,7 @@ class ACommunicationActivity : AppCompatActivity() {
 
     private fun startBCommunicationActivity() {
 
-        val intent = Intent(this, BCommunicationActivity::class.java)
 
-        startActivityForResult(intent, REQUEST_CODE)
 
     }
 

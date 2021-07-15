@@ -85,7 +85,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".communicationactivity.BCommunicationActivity"/>
         <activity android:name=".communicationactivity.CCommunicationActivity"/>
 
 
