@@ -35,20 +35,20 @@ class ListViewAdapter : BaseAdapter() {
 
             when {
 
-                position / 3 == 0 -> {
+                position % 3 == 0 -> {
                     view =
                         LayoutInflater.from(parent?.context).inflate(R.layout.item_a, parent, false)
                     listViewHolder = AViewHolder(view)
                 }
 
-                position / 3 == 1 -> {
+                position % 3 == 1 -> {
                     view =
                         LayoutInflater.from(parent?.context).inflate(R.layout.item_b, parent, false)
                     listViewHolder = BViewHolder(view)
 
                 }
 
-                position / 3 == 2 -> {
+                position % 3 == 2 -> {
                     view =
                         LayoutInflater.from(parent?.context).inflate(R.layout.item_c, parent, false)
                     listViewHolder = CViewHolder(view)
