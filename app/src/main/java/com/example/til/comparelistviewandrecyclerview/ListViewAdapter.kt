@@ -14,6 +14,8 @@ class ListViewAdapter : BaseAdapter() {
 
     private lateinit var view: View
 
+    private var listViewHolder: ListViewHolder? = null
+
     fun addAll(list: List<String>) {
         itemList.addAll(list)
     }
@@ -28,22 +30,33 @@ class ListViewAdapter : BaseAdapter() {
         position.toLong()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-
         if (convertView == null) {
-            Log.d("결과", "$position 불림. 생성x")
             view =
                 LayoutInflater.from(parent?.context).inflate(R.layout.item_listview, parent, false)
 
+            listViewHolder = ListViewHolder(view)
+
+            view.tag = listViewHolder
         } else {
             view = convertView
-            Log.d("결과", "$position 불림. 생성0")
+
+            Log.d("결과", view.tag.toString())
+
+            listViewHolder = view.tag as? ListViewHolder
         }
 
-        val editText: EditText = view.findViewById(R.id.edittext)
-
-        editText.hint = itemList[position]
+        listViewHolder?.bind(itemList[position])
 
         return view
+    }
+
+    class ListViewHolder(itemView: View) {
+
+        private val editText: EditText = itemView.findViewById(R.id.edittext)
+
+        fun bind(item: String) {
+            editText.hint = item
+        }
     }
 
 }
