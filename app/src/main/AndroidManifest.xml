@@ -76,7 +76,7 @@
         android:theme="@style/Theme.TIL"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".macaddress.MacAddressActivity"
+            android:name=".comparelistviewandrecyclerview.ListViewActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
