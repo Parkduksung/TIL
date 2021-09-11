@@ -1,11 +1,12 @@
 package com.example.til.comparelistviewandrecyclerview
 
-import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.EditText
+import android.widget.TextView
 import com.example.til.R
 
 class ListViewAdapter : BaseAdapter() {
@@ -31,32 +32,100 @@ class ListViewAdapter : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         if (convertView == null) {
-            view =
-                LayoutInflater.from(parent?.context).inflate(R.layout.item_listview, parent, false)
 
-            listViewHolder = ListViewHolder(view)
+            when {
+
+                position / 3 == 0 -> {
+                    view =
+                        LayoutInflater.from(parent?.context).inflate(R.layout.item_a, parent, false)
+                    listViewHolder = AViewHolder(view)
+                }
+
+                position / 3 == 1 -> {
+                    view =
+                        LayoutInflater.from(parent?.context).inflate(R.layout.item_b, parent, false)
+                    listViewHolder = BViewHolder(view)
+
+                }
+
+                position / 3 == 2 -> {
+                    view =
+                        LayoutInflater.from(parent?.context).inflate(R.layout.item_c, parent, false)
+                    listViewHolder = CViewHolder(view)
+                }
+
+            }
 
             view.tag = listViewHolder
         } else {
             view = convertView
 
-            Log.d("결과", view.tag.toString())
-
             listViewHolder = view.tag as? ListViewHolder
         }
 
-        listViewHolder?.bind(itemList[position])
+        listViewHolder?.bind(itemList[position], position)
 
         return view
     }
 
-    class ListViewHolder(itemView: View) {
+    abstract class ListViewHolder {
+
+        abstract fun bind(item: String, position: Int)
+    }
+
+
+    class AViewHolder(itemView: View) : ListViewHolder() {
 
         private val editText: EditText = itemView.findViewById(R.id.edittext)
 
-        fun bind(item: String) {
+        private val textView: TextView = itemView.findViewById(R.id.textview)
+
+
+        @SuppressLint("SetTextI18n")
+        override fun bind(item: String, position: Int) {
+
+            textView.text = "$position 번째 A"
+
             editText.hint = item
+
         }
+
+    }
+
+    class BViewHolder(itemView: View) : ListViewHolder() {
+
+        private val editText: EditText = itemView.findViewById(R.id.edittext)
+
+        private val textView: TextView = itemView.findViewById(R.id.textview)
+
+
+        @SuppressLint("SetTextI18n")
+        override fun bind(item: String, position: Int) {
+
+            textView.text = "$position 번째 B"
+
+            editText.hint = item
+
+        }
+
+    }
+
+    class CViewHolder(itemView: View) : ListViewHolder() {
+
+        private val editText: EditText = itemView.findViewById(R.id.edittext)
+
+        private val textView: TextView = itemView.findViewById(R.id.textview)
+
+
+        @SuppressLint("SetTextI18n")
+        override fun bind(item: String, position: Int) {
+
+            textView.text = "$position 번째 C"
+
+            editText.hint = item
+
+        }
+
     }
 
 }
