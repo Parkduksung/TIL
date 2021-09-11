@@ -1,9 +1,7 @@
 package com.example.til
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.til.clipboard.Clipboard
-import com.example.til.connectdownlatch.ConnectLatch
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 

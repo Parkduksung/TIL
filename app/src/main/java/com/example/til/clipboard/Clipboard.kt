@@ -1,11 +1,7 @@
 package com.example.til.clipboard
 
-import android.annotation.SuppressLint
-import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.core.content.getSystemService
 
 class Clipboard {

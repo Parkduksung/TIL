@@ -1,14 +1,10 @@
 package com.example.til.clipboard
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.getSystemService
 import com.example.til.R
 
 class ClipboardActivity : AppCompatActivity() {
