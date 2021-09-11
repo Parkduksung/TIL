@@ -1,6 +1,5 @@
 package com.example.til.comparelistviewandrecyclerview
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,8 @@ import com.example.til.R
 class ListViewAdapter : BaseAdapter() {
 
     private val itemList = mutableListOf<String>()
+
+    private lateinit var view: View
 
     fun addAll(list: List<String>) {
         itemList.addAll(list)
@@ -26,18 +27,23 @@ class ListViewAdapter : BaseAdapter() {
     override fun getItemId(position: Int): Long =
         position.toLong()
 
-    @SuppressLint("ViewHolder")
-    override fun getView(position: Int, view: View?, parent: ViewGroup?): View {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        Log.d("결과", "$position 불림.")
+        if (convertView == null) {
+            Log.d("결과", "$position 불림. 생성x")
+            view =
+                LayoutInflater.from(parent?.context).inflate(R.layout.item_listview, parent, false)
 
-        val layoutInflater =
-            LayoutInflater.from(parent?.context).inflate(R.layout.item_listview, parent, false)
+        } else {
+            view = convertView
+            Log.d("결과", "$position 불림. 생성0")
+        }
 
-        val editText: EditText = layoutInflater.findViewById(R.id.edittext)
+        val editText: EditText = view.findViewById(R.id.edittext)
 
         editText.hint = itemList[position]
 
-        return layoutInflater
+        return view
     }
+
 }
