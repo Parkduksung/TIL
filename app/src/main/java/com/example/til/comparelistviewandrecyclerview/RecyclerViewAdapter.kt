@@ -20,11 +20,13 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.RecyclerVie
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         holder.bind(itemList[position])
+
     }
 
     override fun getItemCount(): Int =
         itemList.size
 
+    //여기서 이것을 inner 라고 붙이게 되면 밖에 private 으로 선언된 itemList 를 fun bind 에서 사용할 수 도 있다.
     class RecyclerViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.item_recyclerview, parent, false)
     ) {
