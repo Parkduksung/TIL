@@ -16,25 +16,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
         itemList.addAll(list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
-
-        return when (viewType) {
-
-            0 -> {
-                ARecyclerViewHolder(parent, R.layout.item_a)
-            }
-            1 -> {
-                BRecyclerViewHolder(parent, R.layout.item_b)
-            }
-            2 -> {
-                CRecyclerViewHolder(parent, R.layout.item_c)
-            }
-            else -> {
-                throw  IllegalArgumentException()
-            }
-        }
-
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder =
+        sortViewHolder(parent, viewType)
 
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder, position: Int) {
@@ -53,6 +36,27 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
 
     override fun getItemCount(): Int =
         itemList.size
+
+
+    companion object {
+
+        fun sortViewHolder(parent: ViewGroup, position: Int): BaseRecyclerViewHolder {
+            return when (position) {
+                0 -> {
+                    ARecyclerViewHolder(parent, R.layout.item_a)
+                }
+                1 -> {
+                    BRecyclerViewHolder(parent, R.layout.item_b)
+                }
+                2 -> {
+                    CRecyclerViewHolder(parent, R.layout.item_c)
+                }
+                else -> {
+                    throw  IllegalArgumentException()
+                }
+            }
+        }
+    }
 
 }
 
