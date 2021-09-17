@@ -3,6 +3,7 @@ package com.example.til.comparelistviewandrecyclerview
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.example.til.R
@@ -15,11 +16,39 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
         itemList.addAll(list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder =
-        RecyclerViewHolder(parent, R.layout.item_recyclerview)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder {
+
+        return when (viewType) {
+
+            0 -> {
+                ARecyclerViewHolder(parent, R.layout.item_a)
+            }
+            1 -> {
+                BRecyclerViewHolder(parent, R.layout.item_b)
+            }
+            2 -> {
+                CRecyclerViewHolder(parent, R.layout.item_c)
+            }
+            else -> {
+                throw  IllegalArgumentException()
+            }
+        }
+
+    }
+
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder, position: Int) {
-        (holder as RecyclerViewHolder).bind(itemList[position])
+        when (holder) {
+            is ARecyclerViewHolder -> {
+                holder.bind(itemList[position])
+            }
+            is BRecyclerViewHolder -> {
+                holder.bind(itemList[position])
+            }
+            is CRecyclerViewHolder -> {
+                holder.bind(itemList[position])
+            }
+        }
     }
 
     override fun getItemCount(): Int =
@@ -34,13 +63,54 @@ abstract class BaseRecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: In
     )
 
 
-class RecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
+class ARecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
     BaseRecyclerViewHolder(parent, layoutId) {
+
+    private val textView: TextView = itemView.findViewById(R.id.textview)
 
     private val editText: EditText = itemView.findViewById(R.id.edittext)
 
     fun bind(item: String) {
+
+        textView.text = "$adapterPosition 번째 A"
+
         editText.hint = item
     }
 
 }
+
+
+class BRecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
+    BaseRecyclerViewHolder(parent, layoutId) {
+
+    private val textView: TextView = itemView.findViewById(R.id.textview)
+
+    private val editText: EditText = itemView.findViewById(R.id.edittext)
+
+    fun bind(item: String) {
+
+        textView.text = "$adapterPosition 번째 B"
+
+        editText.hint = item
+    }
+
+}
+
+class CRecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
+    BaseRecyclerViewHolder(parent, layoutId) {
+
+    private val textView: TextView = itemView.findViewById(R.id.textview)
+
+    private val editText: EditText = itemView.findViewById(R.id.edittext)
+
+    fun bind(item: String) {
+
+        textView.text = "$adapterPosition 번째 C"
+
+        editText.hint = item
+    }
+
+}
+
+
+
