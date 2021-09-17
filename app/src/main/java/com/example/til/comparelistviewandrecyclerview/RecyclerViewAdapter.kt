@@ -8,7 +8,7 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.example.til.R
 
-class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
+class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder<Any>>() {
 
     private val itemList = mutableListOf<String>()
 
@@ -16,11 +16,11 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
         itemList.addAll(list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<Any> =
         sortViewHolder(parent, viewType)
 
 
-    override fun onBindViewHolder(holder: BaseRecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseRecyclerViewHolder<Any>, position: Int) {
         when (holder) {
             is ARecyclerViewHolder -> {
                 holder.bind(itemList[position])
@@ -40,7 +40,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
 
     companion object {
 
-        fun sortViewHolder(parent: ViewGroup, position: Int): BaseRecyclerViewHolder {
+        fun sortViewHolder(parent: ViewGroup, position: Int): BaseRecyclerViewHolder<Any> {
             return when (position) {
                 0 -> {
                     ARecyclerViewHolder(parent, R.layout.item_a)
@@ -61,57 +61,60 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder>() {
 }
 
 
-abstract class BaseRecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
+abstract class BaseRecyclerViewHolder<T : Any>(parent: ViewGroup, @LayoutRes layoutId: Int) :
     RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
-    )
+    ) {
+
+    abstract fun bind(item: T)
+}
 
 
 class ARecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
-    BaseRecyclerViewHolder(parent, layoutId) {
+    BaseRecyclerViewHolder<Any>(parent, layoutId) {
 
     private val textView: TextView = itemView.findViewById(R.id.textview)
 
     private val editText: EditText = itemView.findViewById(R.id.edittext)
 
-    fun bind(item: String) {
+    override fun bind(item: Any) {
 
         textView.text = "$adapterPosition 번째 A"
 
-        editText.hint = item
+        editText.hint = (item as String)
     }
 
 }
 
 
 class BRecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
-    BaseRecyclerViewHolder(parent, layoutId) {
+    BaseRecyclerViewHolder<Any>(parent, layoutId) {
 
     private val textView: TextView = itemView.findViewById(R.id.textview)
 
     private val editText: EditText = itemView.findViewById(R.id.edittext)
 
-    fun bind(item: String) {
+    override fun bind(item: Any) {
 
         textView.text = "$adapterPosition 번째 B"
 
-        editText.hint = item
+        editText.hint = item as String
     }
 
 }
 
 class CRecyclerViewHolder(parent: ViewGroup, @LayoutRes layoutId: Int) :
-    BaseRecyclerViewHolder(parent, layoutId) {
+    BaseRecyclerViewHolder<Any>(parent, layoutId) {
 
     private val textView: TextView = itemView.findViewById(R.id.textview)
 
     private val editText: EditText = itemView.findViewById(R.id.edittext)
 
-    fun bind(item: String) {
+    override fun bind(item: Any) {
 
         textView.text = "$adapterPosition 번째 C"
 
-        editText.hint = item
+        editText.hint = item as String
     }
 
 }
