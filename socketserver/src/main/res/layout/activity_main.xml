@@ -41,38 +41,40 @@
             app:layout_constraintTop_toBottomOf="@id/port"
             app:layout_constraintVertical_bias=".0" />
 
-        <EditText
-            android:id="@+id/msg"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/send"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/connect"
-            app:layout_constraintVertical_bias="1" />
 
         <Button
-            android:id="@+id/send"
+            android:id="@+id/send_b"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="SendMessage"
+            android:onClick="SendA"
+            android:text="Send_B"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/chatting"
-            android:layout_width="match_parent"
+
+        <Button
+            android:id="@+id/send_a"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="SendB"
+            android:text="Send_A"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/send_b"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/send_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="SendC"
+            android:text="Send_C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/connect"
-            app:layout_constraintVertical_bias=".0" />
-
+            app:layout_constraintStart_toEndOf="@id/send_b"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

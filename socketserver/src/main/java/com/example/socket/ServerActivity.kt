@@ -71,31 +71,44 @@ class ServerActivity : AppCompatActivity() {
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
-
-                    while (isConnected) {
-
-                        try {
-
-                            val message = dataInputStream.readUTF()
-
-                            msg.setText("[RECV] $message")
-
-
-                        } catch (e: IOException) {
-                            e.printStackTrace()
-                        }
-                    }
                 }.start()
             }
         }
     }
 
-
-    fun SendMessage(view: View) {
+    fun SendA(view: View) {
         if (::dataOutputStream.isInitialized) {
             Thread {
                 try {
-                    dataOutputStream.writeUTF(binding.msg.text.toString())
+                    dataOutputStream.writeUTF("a")
+                    dataOutputStream.flush()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+            }.start()
+        }
+    }
+
+    fun SendB(view: View) {
+        if (::dataOutputStream.isInitialized) {
+            Thread {
+                try {
+                    dataOutputStream.writeUTF("b")
+                    dataOutputStream.flush()
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+            }.start()
+        }
+    }
+
+    fun SendC(view: View) {
+        if (::dataOutputStream.isInitialized) {
+            Thread {
+                try {
+                    dataOutputStream.writeUTF("c")
                     dataOutputStream.flush()
                 } catch (e: IOException) {
                     e.printStackTrace()

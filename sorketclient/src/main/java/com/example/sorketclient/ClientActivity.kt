@@ -1,9 +1,11 @@
 package com.example.sorketclient
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.sorketclient.databinding.ActivityMainBinding
 import java.io.DataInputStream
@@ -63,29 +65,27 @@ class ClientActivity : AppCompatActivity() {
                     val msg = dataInputStream.readUTF()
 
                     runOnUiThread {
-                        binding.msg.setText(msg)
+                        when (msg) {
+                            "a" -> {
+                                binding.image.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_adb))
+                            }
+
+                            "b" -> {
+                                binding.image.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_android))
+                            }
+
+                            "c" -> {
+                                binding.image.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_bug_report))
+                            }
+                        }
                     }
+
 
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
         }.start()
-    }
-
-    fun SendMessage(view: View) {
-
-        if (::dataOutputStream.isInitialized) {
-            Thread {
-                try {
-                    dataOutputStream.writeUTF(binding.msg.text.toString())
-                    dataOutputStream.flush()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-            }.start()
-        }
-
     }
 
     override fun onStop() {
