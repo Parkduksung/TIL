@@ -32,20 +32,6 @@ class OverlayService : Service() {
         get() = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
 
-    private val receiver = object: BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            if(intent != null) {
-                when(intent.action) {
-                    Intent.ACTION_SCREEN_OFF -> {
-                        val newIntent = Intent(context, LockScreenActivity::class.java)
-                        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        startActivity(newIntent)
-                    }
-                }
-            }
-        }
-    }
-
     override fun onBind(intent: Intent?): IBinder? =
         null
 
@@ -53,9 +39,6 @@ class OverlayService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         startForeground(NOTIFICATION_DOWNLOAD_ID, createDownloadingNotification(0))
         thread {
-            val filter = IntentFilter();
-            filter.addAction(Intent.ACTION_SCREEN_OFF)
-
             for (i in 1..100) {
                 Thread.sleep(100)
                 updateProgress(i)
@@ -63,7 +46,6 @@ class OverlayService : Service() {
             stopForeground(true)
             stopSelf()
             notificationManager.notify(NOTIFICATION_COMPLETE_ID, createCompleteNotification())
-            registerReceiver(receiver, filter)
         }
         return START_STICKY
     }
@@ -73,7 +55,7 @@ class OverlayService : Service() {
         setContentText("Nice 🚀")
         setSmallIcon(R.drawable.ic_launcher_background)
         setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-        val intent = Intent(this@OverlayService , SubActivity::class.java).apply {
+        val intent = Intent(this@OverlayService, ProjectionActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK
         }
         startActivity(intent)
