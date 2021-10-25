@@ -53,6 +53,11 @@ class OverlayService : Service() {
         setContentText("Nice 🚀")
         setSmallIcon(R.drawable.ic_launcher_background)
         setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+        val intent = Intent(this@OverlayService , SubActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+
+        startActivity(intent)
     }.build()
 
     private fun updateProgress(@androidx.annotation.IntRange(from = 0L, to = 100L) progress: Int) {
