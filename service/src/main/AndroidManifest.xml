@@ -3,6 +3,8 @@
     package="com.example.service">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,6 +25,18 @@
         <activity android:name=".SubActivity" />
 
         <service android:name=".OverlayService" />
+
+        <service
+            android:name=".LockScreenService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.SYSTEM_ALERT_WINDOW" />
+
+        <activity
+            android:name=".LockScreenActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity="com.example.service" />
     </application>
 
 </manifest>
