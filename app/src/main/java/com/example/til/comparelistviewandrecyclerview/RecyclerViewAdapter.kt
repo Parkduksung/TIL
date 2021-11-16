@@ -1,5 +1,6 @@
 package com.example.til.comparelistviewandrecyclerview
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
@@ -16,11 +17,15 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder<Any>>() 
         itemList.addAll(list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<Any> =
-        sortViewHolder(parent, viewType)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<Any> {
+        Log.d("결과", "여기는 onCreateViewHolder")
+        return sortViewHolder(parent, viewType)
+    }
+
 
 
     override fun onBindViewHolder(holder: BaseRecyclerViewHolder<Any>, position: Int) {
+        Log.d("결과", "여기는 onBindViewHolder")
         when (holder) {
             is ARecyclerViewHolder -> {
                 holder.bind(itemList[position])
@@ -34,14 +39,28 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder<Any>>() 
         }
     }
 
-    override fun getItemCount(): Int =
-        itemList.size
+    override fun getItemCount(): Int {
+        Log.d("결과", "여기는 getItemCount")
+        return itemList.size
+    }
 
+    override fun getItemViewType(position: Int): Int {
+        Log.d("결과", "여기는 getItemViewType")
+        return super.getItemViewType(position)
+    }
+
+    override fun getItemId(position: Int): Long {
+        Log.d("결과", "여기는 getItemId")
+        return super.getItemId(position)
+    }
 
     companion object {
 
-        fun sortViewHolder(parent: ViewGroup, position: Int): BaseRecyclerViewHolder<Any> {
-            return when (position) {
+        fun sortViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerViewHolder<Any> {
+
+            Log.d("결과", viewType.toString())
+
+            return when (viewType) {
                 0 -> {
                     ARecyclerViewHolder(parent, R.layout.item_a)
                 }
@@ -61,7 +80,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BaseRecyclerViewHolder<Any>>() 
 }
 
 
-abstract class BaseRecyclerViewHolder<T : Any>(parent: ViewGroup, @LayoutRes layoutId: Int) :
+abstract class BaseRecyclerViewHolder<T>(parent: ViewGroup, @LayoutRes layoutId: Int) :
     RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
     ) {

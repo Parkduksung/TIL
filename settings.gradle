@@ -1,5 +1,6 @@
 include ':app'
-rootProject.name = "TIL"
+include ':service'
 include ':socketserver'
 include ':sorketclient'
 include ':location'
+include ':vibrate'
