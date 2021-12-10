@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="mqtt/src/main/res/layout/activity_main.xml" value="0.21965579710144928" />
+        <entry key="mqtt/src/main/res/menu/menu_main.xml" value="0.1" />
         <entry key="vibrate/src/main/res/layout/activity_main.xml" value="0.23097826086956522" />
       </map>
     </option>
