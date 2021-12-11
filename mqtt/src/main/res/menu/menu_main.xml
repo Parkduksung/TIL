@@ -13,9 +13,4 @@
         android:title="Subscribe"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/publish"
-        android:orderInCategory="100"
-        android:title="Publish"
-        app:showAsAction="never" />
 </menu>
