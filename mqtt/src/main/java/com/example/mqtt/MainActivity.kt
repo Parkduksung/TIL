@@ -3,9 +3,10 @@ package com.example.mqtt
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.mqtt.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,9 +14,51 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this, defaultViewModelProviderFactory).get(MainViewModel::class.java)
     }
 
+    private val mqttAdapter = MqttAdapter()
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        initUi()
+        observationViewState()
+    }
+
+    private fun initUi() {
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding.viewModel = mainViewModel
+        setContentView(binding.root)
+
+        binding.rvMqttMessage.adapter = mqttAdapter
+    }
+
+    private fun observationViewState() {
+
+        mainViewModel.mainViewState.observe(this) { viewState ->
+
+            when (viewState) {
+
+                is MainViewModel.MainViewState.Connection -> {
+                    showToast("Connection Success")
+                }
+
+                is MainViewModel.MainViewState.Subscribe -> {
+                    showToast("Subscribe Success")
+                }
+
+                is MainViewModel.MainViewState.Error -> {
+                    showToast(viewState.message)
+                }
+
+                is MainViewModel.MainViewState.SendMessage -> {
+                    mqttAdapter.addMessage(viewState.mqttMessage)
+                }
+
+                is MainViewModel.MainViewState.ReceiveMessage -> {
+                    mqttAdapter.addMessage(viewState.mqttMessage)
+                }
+            }
+        }
     }
 
 
@@ -27,30 +70,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.connection -> {
-                mainViewModel.connectClient { state, message ->
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-                }
+                mainViewModel.connectClient()
                 true
             }
 
             R.id.subscribe -> {
-                mainViewModel.subscribe { state, message ->
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-                }
-                true
-            }
-
-            R.id.publish -> {
-                mainViewModel.publish(msg = "Test") { state, message ->
-                    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-                }
+                mainViewModel.subscribe()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    override fun onContextItemSelected(item: MenuItem): Boolean {
-        return super.onContextItemSelected(item)
     }
 }
