@@ -1,11 +1,20 @@
 package com.example.decorder
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.decorder.base.BaseActivity
+import com.example.decorder.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        with(binding) {
+            btnTest1920x1080.setOnClickListener {
+                startActivity(VideoDecodeActivity.newIntent(this@MainActivity, VideoType.TYPE_1920X1080))
+            }
+
+            btnTest2560x1440.setOnClickListener {
+                startActivity(VideoDecodeActivity.newIntent(this@MainActivity, VideoType.TYPE_2560X1440))
+            }
+        }
     }
 }
