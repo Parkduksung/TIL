@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/location" />
             <option value="$PROJECT_DIR$/mqtt" />
             <option value="$PROJECT_DIR$/network" />
+            <option value="$PROJECT_DIR$/operate" />
             <option value="$PROJECT_DIR$/scrollcapture" />
             <option value="$PROJECT_DIR$/service" />
             <option value="$PROJECT_DIR$/socketserver" />
