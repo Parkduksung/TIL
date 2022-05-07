@@ -22,10 +22,15 @@ class SamplePackageActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.buttonRouteMarket.setOnClickListener {
-            routeMarketUrl(packageName)
+            if(isPackageInstalled(CHECK_PACKAGE, packageManager)){
+                val intent = packageManager.getLaunchIntentForPackage(CHECK_PACKAGE)
+                intent!!.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+            } else{
+                routeMarketUrl(CHECK_PACKAGE)
+            }
         }
 
-        Log.d("결과", isPackageInstalled("com.kakao.talk", packageManager).toString())
     }
 
     /**
@@ -57,5 +62,9 @@ class SamplePackageActivity : AppCompatActivity() {
         } catch (e: PackageManager.NameNotFoundException) {
             false
         }
+    }
+
+    companion object {
+        private const val CHECK_PACKAGE ="com.kakao.talk"
     }
 }
