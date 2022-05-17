@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/mqtt" />
             <option value="$PROJECT_DIR$/network" />
             <option value="$PROJECT_DIR$/operate" />
+            <option value="$PROJECT_DIR$/perference" />
             <option value="$PROJECT_DIR$/scrollcapture" />
             <option value="$PROJECT_DIR$/service" />
             <option value="$PROJECT_DIR$/socketserver" />
@@ -26,7 +27,6 @@
             <option value="$PROJECT_DIR$/vibrate" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

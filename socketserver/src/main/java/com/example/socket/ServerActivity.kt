@@ -80,12 +80,17 @@ class ServerActivity : AppCompatActivity() {
         if (::dataOutputStream.isInitialized) {
             Thread {
                 try {
-                    dataOutputStream.writeUTF("a")
+                    val byte = byteArrayOf(4,4,4,4)
+                    byte[0]
+
+                    dataOutputStream.write(10)
+
+
+//                    dataOutputStream.writeUTF("a")
                     dataOutputStream.flush()
                 } catch (e: IOException) {
                     e.printStackTrace()
                 }
-
             }.start()
         }
     }

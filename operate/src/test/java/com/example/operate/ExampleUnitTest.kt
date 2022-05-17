@@ -16,4 +16,19 @@ class ExampleUnitTest {
         assertEquals(4, 2 + 2)
     }
 
+    @Test
+    fun `연산테스트`(){
+
+        val a = 537919552
+        val b = 64
+
+        val result = a.and(64)
+
+        val toHexA = Integer.toHexString(a)
+        val toHexB = Integer.toHexString(b)
+
+        println(result == b)
+
+    }
+
 }

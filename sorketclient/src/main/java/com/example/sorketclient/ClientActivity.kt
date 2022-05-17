@@ -64,18 +64,42 @@ class ClientActivity : AppCompatActivity() {
 
                     val msg = dataInputStream.readUTF()
 
+//                    val bite = dataInputStream.readBytes()
+//
+//                    Log.d("결과", bite.size.toString())
+                    Log.d("결과", dataInputStream.readInt().toString())
+
+
+
+
+
                     runOnUiThread {
                         when (msg) {
                             "a" -> {
-                                binding.image.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_adb))
+                                binding.image.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        R.drawable.ic_adb
+                                    )
+                                )
                             }
 
                             "b" -> {
-                                binding.image.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_android))
+                                binding.image.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        R.drawable.ic_android
+                                    )
+                                )
                             }
 
                             "c" -> {
-                                binding.image.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_bug_report))
+                                binding.image.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        R.drawable.ic_bug_report
+                                    )
+                                )
                             }
                         }
                     }
