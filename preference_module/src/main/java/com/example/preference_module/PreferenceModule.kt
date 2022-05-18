@@ -1,23 +1,22 @@
-package com.example.perference
+package com.example.preference_module
 
 import android.app.Activity
 import android.content.Context
 import androidx.core.content.edit
+import com.example.preference_module.Constant.PREF_START
+import com.example.preference_module.Constant.START_KEY_IS_STARTED
 
-class ConfigRepository(private val context: Context) {
+class PreferenceModule(private val context: Context) {
 
     companion object {
 
         @Volatile
-        private var INSTANCE: ConfigRepository? = null
+        private var INSTANCE: PreferenceModule? = null
 
-        fun getInstance(context: Context): ConfigRepository =
+        fun getInstance(context: Context): PreferenceModule =
             INSTANCE ?: synchronized(this) {
-                INSTANCE ?: ConfigRepository(context).also { INSTANCE = it }
+                INSTANCE ?: PreferenceModule(context).also { INSTANCE = it }
             }
-
-        private const val PREF_START = "rsflag.isstartapp"
-        private const val START_KEY_IS_STARTED = "isstart"
     }
 
     private fun getStartAppPref() = context.getSharedPreferences(PREF_START, Activity.MODE_PRIVATE)

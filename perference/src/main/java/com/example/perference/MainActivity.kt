@@ -3,17 +3,18 @@ package com.example.perference
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.preference_module.PreferenceModule
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if(ConfigRepository.getInstance(this).getStartApp()){
+        if (PreferenceModule.getInstance(this).getStartApp()) {
             Log.d("결과", "true")
-        }else{
+        } else {
             Log.d("결과", "false")
-            ConfigRepository.getInstance(this).setStartApp(true)
+            PreferenceModule.getInstance(this).setStartApp(true)
         }
     }
 }
