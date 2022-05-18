@@ -8,13 +8,21 @@ class ConfigRepository(private val context: Context) {
 
     companion object {
 
+        @Volatile
+        private var INSTANCE: ConfigRepository? = null
+
+        fun getInstance(context: Context): ConfigRepository =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: ConfigRepository(context).also { INSTANCE = it }
+            }
+
         private const val PREF_START = "rsflag.isstartapp"
         private const val START_KEY_IS_STARTED = "isstart"
     }
 
     private fun getStartAppPref() = context.getSharedPreferences(PREF_START, Activity.MODE_PRIVATE)
 
-    
+
     fun setStartApp(started: Boolean) {
         getStartAppPref().edit {
             putBoolean(START_KEY_IS_STARTED, started)
@@ -24,5 +32,6 @@ class ConfigRepository(private val context: Context) {
     fun getStartApp(): Boolean {
         return getStartAppPref().getBoolean(START_KEY_IS_STARTED, false)
     }
+
 
 }
