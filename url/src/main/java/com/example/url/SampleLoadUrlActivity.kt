@@ -1,5 +1,6 @@
 package com.example.url
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -18,18 +19,21 @@ class SampleLoadUrlActivity : AppCompatActivity() {
 
         with(binding) {
 
-            naver.setOnClickListener {
-                loadUrl("https://www.naver.com/")
-            }
-
-            daum.setOnClickListener {
-                loadUrl("https://www.daum.net/")
-
-            }
+//            naver.setOnClickListener {
+//                loadUrl("https://www.naver.com/")
+//            }
 
             google.setOnClickListener {
-                loadUrl("https://www.google.com/")
+                AlertDialog.Builder(this@SampleLoadUrlActivity)
+                    .setTitle("예약확인")
+                    .setMessage("에약된 상상랩번호, 날짜, 시간은 상상~~~~~ 입니다.")
+                    .create()
+                    .show()
             }
+//
+//            google.setOnClickListener {
+//                loadUrl("https://www.google.com/")
+//            }
 
         }
     }

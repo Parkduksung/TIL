@@ -19,10 +19,10 @@ class ExampleUnitTest {
     @Test
     fun `연산테스트`(){
 
-        val a = 537919552
-        val b = 64
+        val a = 537919560
+        val b = 0x00000040
 
-        val result = a.and(64)
+        val result = a.and(b)
 
         val toHexA = Integer.toHexString(a)
         val toHexB = Integer.toHexString(b)

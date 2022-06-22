@@ -1,5 +1,6 @@
 package com.example.scrollcapture
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             when (viewState) {
                 is MainViewModel.MainViewState.PermissionResult -> {
                     if (viewState.isGranted) {
-                        with(binding){
+                        with(binding) {
                             val totalBitmap = Bitmap.createBitmap(
                                 scrollview.getChildAt(0).width,
                                 scrollview.getChildAt(0).height,
@@ -38,7 +39,14 @@ class MainActivity : AppCompatActivity() {
                             val canvas = Canvas(totalBitmap)
                             canvas.drawColor(Color.WHITE)
                             binding.llScroll.draw(canvas)
-                            totalBitmap?.saveToGallery(this@MainActivity)
+                            val uri = totalBitmap?.saveToGallery(this@MainActivity)
+
+                            val shareIntent: Intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                putExtra(Intent.EXTRA_STREAM, uri)
+                                type = "image/jpeg"
+                            }
+                            startActivity(Intent.createChooser(shareIntent, null))
                         }
                     } else {
                         Toast.makeText(this, "Permission Deni", Toast.LENGTH_SHORT).show()
