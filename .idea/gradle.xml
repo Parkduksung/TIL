@@ -26,6 +26,7 @@
             <option value="$PROJECT_DIR$/service" />
             <option value="$PROJECT_DIR$/socketserver" />
             <option value="$PROJECT_DIR$/sorketclient" />
+            <option value="$PROJECT_DIR$/storage" />
             <option value="$PROJECT_DIR$/url" />
             <option value="$PROJECT_DIR$/vibrate" />
           </set>
