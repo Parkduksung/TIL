@@ -10,7 +10,7 @@ abstract class BaseTest {
     protected val outputStreamCaptor: ByteArrayOutputStream = ByteArrayOutputStream()
 
     @Before
-    fun setUp() {
+    open fun setUp() {
         System.setOut(PrintStream(outputStreamCaptor))
     }
 
