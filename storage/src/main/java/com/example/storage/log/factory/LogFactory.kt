@@ -2,57 +2,35 @@ package com.example.storage.log.factory
 
 import ErrorLogFactory
 import com.example.storage.Level
+import com.example.storage.LogOption
 import com.example.storage.RLog
 import com.example.storage.log.LogType
 
 abstract class LogFactory {
+
+    protected var logOption: LogOption? = null
+
     open fun print(level: Level, message: String) {
-        if (level.ordinal < Level.VERBOSE.ordinal) return
-
-        val traceElements = Throwable().stackTrace
-
-        val (className, lineNumber) = if (traceElements.size > 2) {
-            Pair(traceElements[3].fileName, traceElements[3].lineNumber)
-        } else {
-            Pair("unknown", "-1")
-        }
-        val log = "(${className}, $lineNumber) $message"
-
-        sortLog(level, log)
-    }
-
-
-    private fun sortLog(level: Level, log: String) {
-        when (level) {
-            Level.VERBOSE -> {
-                android.util.Log.v(RLog.TAG, log)
-            }
-
-            Level.DEBUG -> {
-                android.util.Log.d(RLog.TAG, log)
-            }
-
-            Level.INFO -> {
-                android.util.Log.i(RLog.TAG, log)
-            }
-
-            Level.WARN -> {
-                android.util.Log.w(RLog.TAG, log)
-            }
-
-            else -> {
-                android.util.Log.e(RLog.TAG, log)
+        logOption?.let { option ->
+            if (option.printVisibleState) {
+                synchronized(this){
+                    option.printer.print(RLog.TAG, level, message)
+                }
             }
         }
     }
 
+    fun setOption(option: LogOption) {
+        this.logOption = option
+    }
 
     companion object {
-        inline fun <reified T : LogType> createFactory(): LogFactory = when (T::class) {
-            LogType.MessageLog::class -> MessageLogFactory()
-            LogType.ErrorLog::class -> ErrorLogFactory()
-            LogType.FormatLog::class -> FormatLogFactory()
-            else -> throw  IllegalArgumentException()
-        }
+        inline fun <reified T : LogType> createFactory(option: LogOption): LogFactory =
+            when (T::class) {
+                LogType.MessageLog::class -> MessageLogFactory().apply { setOption(option) }
+                LogType.ErrorLog::class -> ErrorLogFactory().apply { setOption(option) }
+                LogType.FormatLog::class -> FormatLogFactory().apply { setOption(option) }
+                else -> throw  IllegalArgumentException()
+            }
     }
 }

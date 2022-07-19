@@ -33,7 +33,9 @@ class ExampleUnitTest : BaseTest() {
 
         val activity = controller.create().visible().get()
 
-        val logText = "/${MainActivity.TAG}: LogTest"
+        val logText = "안녕하세요"
+
+//        println(outputStreamCaptor.toString())
 
         assertEquals(true, outputStreamCaptor.toString().contains(logText))
 
@@ -95,7 +97,7 @@ class ExampleUnitTest : BaseTest() {
             add(message4)
         }
 
-        assertEquals(testList.joinToString("\n") + "\n", outputStreamCaptor.toString())
+        assertEquals(testList.joinToString("\n") , outputStreamCaptor.toString())
     }
 
 

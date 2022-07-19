@@ -1,6 +1,7 @@
 package com.example.storage.log.factory
 
 import com.example.storage.Level
+import com.example.storage.printer.ILogPrinter
 
 class MessageLogFactory : LogFactory(), MessageLog {
 
