@@ -1,6 +1,8 @@
 package com.example.storage.log
 
-sealed class LogType {
+import com.example.storage.log.factory.Log
+
+sealed class LogType : Log {
     object MessageLog : LogType()
     object ErrorLog : LogType()
     object FormatLog : LogType()

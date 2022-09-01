@@ -1,9 +1,10 @@
 package com.example.storage.log.factory
 
-import com.example.storage.Level
-import com.example.storage.printer.ILogPrinter
 
-class MessageLogFactory : LogFactory(), MessageLog {
+import com.example.storage.Level
+import kotlin.reflect.KProperty
+
+class MessageLogFactory : LogFactor(), MessageLog {
 
     override fun v(message: String) {
         print(Level.VERBOSE, message)
@@ -34,7 +35,9 @@ class MessageLogFactory : LogFactory(), MessageLog {
     }
 }
 
-interface MessageLog {
+interface Log
+
+interface MessageLog : Log {
     fun v(message: String)
     fun d(message: String)
     fun i(message: String)
@@ -43,3 +46,25 @@ interface MessageLog {
     fun r(message: String)
     fun wtf(message: String)
 }
+
+
+interface Concrete {
+    val t: String
+    fun a()
+}
+
+class A(val name: String) : Concrete {
+    override val t: String = name
+
+    override fun a() {
+        println("A")
+    }
+
+    operator fun getValue(nothing: Nothing?, property: KProperty<*>): Concrete {
+        return A(name)
+    }
+}
+
+
+
+class B : Concrete by A("name")

@@ -4,9 +4,7 @@ import ErrorLog
 import android.os.Environment
 import com.example.storage.log.LogType
 import com.example.storage.log.Logger
-import com.example.storage.log.factory.FormatLog
-import com.example.storage.log.factory.LogFactory
-import com.example.storage.log.factory.MessageLog
+import com.example.storage.log.factory.*
 import com.example.storage.printer.ILogPrinter
 import com.example.storage.printer.LogcatPrinter
 import com.example.storage.printer.LoggerOption
@@ -15,6 +13,8 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
+
+//Log 의 기능을 확장하므로 Adapter 패턴도 고려해볼 수 있다.
 object RLog : Logger, LoggerOption {
 
     var TAG = "RV6"
@@ -36,6 +36,7 @@ object RLog : Logger, LoggerOption {
     override fun setMinimumPrintLevel(level: Level) {
         MIN_PRINT_LEVEL = level
     }
+
 
     /**
      * Print Log Message
@@ -194,8 +195,102 @@ enum class Level(val keyword: String) {
 }
 
 data class LogOption(
+    var type: LogType = LogType.MessageLog,
     var printer: ILogPrinter = LogcatPrinter(),
-    var printVisibleState: Boolean = true
+    var printVisibleState: Boolean = true,
+    var isLargeMessage: Boolean = false
 )
 
+
+class LogAdapter(var option: LogOption, var printer: ILogPrinter) : Logger {
+
+    private val messageLogFactory = MessageLogFactory()
+
+
+    override fun v(throwable: Throwable) {
+
+    }
+
+    override fun d(throwable: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun i(throwable: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun w(throwable: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun e(throwable: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun r(throwable: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun wtf(throwable: Throwable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun v(format: String, vararg args: Any) {
+        TODO("Not yet implemented")
+    }
+
+    override fun d(format: String, vararg args: Any) {
+        TODO("Not yet implemented")
+    }
+
+    override fun i(format: String, vararg args: Any) {
+        TODO("Not yet implemented")
+    }
+
+    override fun w(format: String, vararg args: Any) {
+        TODO("Not yet implemented")
+    }
+
+    override fun e(format: String, vararg args: Any) {
+        TODO("Not yet implemented")
+    }
+
+    override fun r(format: String, vararg args: Any) {
+        TODO("Not yet implemented")
+    }
+
+    override fun wtf(format: String, vararg args: Any) {
+        TODO("Not yet implemented")
+    }
+
+
+    override fun v(message: String) {
+        messageLogFactory.v(message)
+        TODO("Not yet implemented")
+    }
+
+    override fun d(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun i(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun w(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun e(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun r(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun wtf(message: String) {
+        TODO("Not yet implemented")
+    }
+}
 

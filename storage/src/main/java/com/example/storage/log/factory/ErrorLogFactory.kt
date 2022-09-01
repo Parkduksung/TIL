@@ -1,7 +1,8 @@
 import com.example.storage.Level
+import com.example.storage.log.LogType
 import com.example.storage.log.factory.LogFactory
 
-class ErrorLogFactory : LogFactory(), ErrorLog {
+class ErrorLogFactory : LogFactory<LogType.ErrorLog>(), ErrorLog {
 
     override fun v(throwable: Throwable) {
         print(Level.VERBOSE, getStackTraceMessage(throwable))
