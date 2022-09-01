@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/decorder" />
             <option value="$PROJECT_DIR$/flow" />
+            <option value="$PROJECT_DIR$/hashtable" />
             <option value="$PROJECT_DIR$/keycode" />
             <option value="$PROJECT_DIR$/location" />
             <option value="$PROJECT_DIR$/mqtt" />
