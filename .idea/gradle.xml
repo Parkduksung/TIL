@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/datastructure" />
             <option value="$PROJECT_DIR$/decorder" />
             <option value="$PROJECT_DIR$/flow" />
             <option value="$PROJECT_DIR$/hashtable" />
