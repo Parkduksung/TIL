@@ -32,14 +32,14 @@ public class DeadLock {
 
     private static class Thread2 extends Thread {
         public void run() {
-            synchronized (l2) {
+            synchronized (l1) {
                 Log.d("결과","Thread 2: Holding lock 2...");
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
                 }
                 Log.d("결과","Thread 2: Waiting for lock 1...");
-                synchronized (l1) {
+                synchronized (l2) {
                     Log.d("결과","Thread 2: Holding lock 2 & 1...");
                 }
             }
