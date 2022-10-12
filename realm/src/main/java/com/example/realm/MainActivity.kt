@@ -3,7 +3,6 @@ package com.example.realm
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.realm.data.model.User
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
