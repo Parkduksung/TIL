@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/checkbox" />
             <option value="$PROJECT_DIR$/datastructure" />
             <option value="$PROJECT_DIR$/deadlock" />
             <option value="$PROJECT_DIR$/decorder" />
