@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="checkbox/src/main/res/layout/activity_main.xml" value="0.17083333333333334" />
         <entry key="decorder/src/main/res/layout/activity_decode.xml" value="0.2953125" />
         <entry key="decorder/src/main/res/layout/activity_main.xml" value="0.29635416666666664" />
         <entry key="flow/src/main/res/layout/activity_main.xml" value="0.24583333333333332" />
@@ -15,6 +16,7 @@
         <entry key="mqtt/src/main/res/menu/menu_main.xml" value="0.1" />
         <entry key="network/src/main/res/layout/activity_main.xml" value="0.24583333333333332" />
         <entry key="operate/src/main/res/layout/activity_main.xml" value="0.2776268115942029" />
+        <entry key="references/src/main/res/layout/activity_main.xml" value="0.17083333333333334" />
         <entry key="scrollcapture/src/main/res/layout/activity_main.xml" value="0.23798076923076922" />
         <entry key="storage/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
         <entry key="url/src/main/res/layout/activity_sample_load_url.xml" value="0.2916666666666667" />
