@@ -37,6 +37,7 @@
             <option value="$PROJECT_DIR$/testtospeech" />
             <option value="$PROJECT_DIR$/url" />
             <option value="$PROJECT_DIR$/vibrate" />
+            <option value="$PROJECT_DIR$/webview" />
           </set>
         </option>
       </GradleProjectSettings>
