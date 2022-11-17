@@ -1,5 +1,6 @@
 package com.example.testtospeech
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
@@ -9,9 +10,11 @@ import android.view.View
 import android.widget.EditText
 import java.util.*
 
-class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class MainActivity : AppCompatActivity() {
     var editText: EditText? = null
-    var tts: TextToSpeech? = null
+
+    private val tts by lazy { TTSUtil }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,46 +22,58 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         findViewById<View>(R.id.run).setOnClickListener {
             val text = editText?.text.toString()
-            speakText(text)
+            tts.speakText(this,text)
         }
-        initTts()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        tts!!.shutdown()
+        tts.shutdown()
+    }
+}
+
+object TTSUtil {
+
+    private var tts: TextToSpeech? = null
+
+    private val utteranceProgressListener = object : UtteranceProgressListener() {
+        override fun onStart(utteranceId: String) {
+            //todo
+        }
+
+        override fun onDone(utteranceId: String) {
+            //todo
+        }
+
+        override fun onError(utteranceId: String) {
+            //todo
+        }
     }
 
-    private fun initTts() {
-        tts = TextToSpeech(applicationContext, this)
-        tts!!.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
-            override fun onStart(utteranceId: String) {
-                Log.i("snowdeer", "[snowdeer] onStart: $utteranceId")
-            }
-
-            override fun onDone(utteranceId: String) {
-                Log.i("snowdeer", "[snowdeer] onDone: $utteranceId")
-            }
-
-            override fun onError(utteranceId: String) {
-                Log.i("snowdeer", "[snowdeer] onError: $utteranceId")
-            }
-        })
-    }
-
-    override fun onInit(status: Int) {
+    private val onInitListener = TextToSpeech.OnInitListener { status ->
         if (status == TextToSpeech.SUCCESS) {
-            Log.i("snowdeer", "[snowdeer] TTS is ready.")
             tts!!.language = Locale.KOREA
             tts!!.setPitch(1.0f)
             tts!!.setSpeechRate(1.0f)
         } else {
-            Log.w("snowdeer", "[snowdeer] TTS is not ready !!")
+            //todo
         }
     }
 
-    private fun speakText(text: String) {
+    private fun init(context: Context) {
+        tts = TextToSpeech(context, onInitListener)
+        tts?.setOnUtteranceProgressListener(utteranceProgressListener)
+    }
+
+    fun speakText(context: Context, text: String) {
+        if (tts == null) {
+            init(context)
+        }
         val utteranceId = "utteranceId"
-        tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId)
+        tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId)
+    }
+
+    fun shutdown() {
+        tts?.shutdown()
     }
 }
