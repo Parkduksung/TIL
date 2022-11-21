@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.run).setOnClickListener {
             val text = editText?.text.toString()
-            tts.speakText(this,text)
+            tts.speakText(applicationContext,text)
         }
     }
 
@@ -38,15 +38,15 @@ object TTSUtil {
 
     private val utteranceProgressListener = object : UtteranceProgressListener() {
         override fun onStart(utteranceId: String) {
-            //todo
+
         }
 
         override fun onDone(utteranceId: String) {
-            //todo
+
         }
 
         override fun onError(utteranceId: String) {
-            //todo
+
         }
     }
 
@@ -56,7 +56,7 @@ object TTSUtil {
             tts!!.setPitch(1.0f)
             tts!!.setSpeechRate(1.0f)
         } else {
-            //todo
+
         }
     }
 
