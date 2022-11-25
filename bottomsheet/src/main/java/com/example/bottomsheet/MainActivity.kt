@@ -9,7 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomSheetFragment = BottomSheetFragment(this)
+        val bottomSheetFragment = BottomSheetFragment()
 
         findViewById<Button>(R.id.btnClick).setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, "")
