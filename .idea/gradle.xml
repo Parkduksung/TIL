@@ -36,6 +36,7 @@
             <option value="$PROJECT_DIR$/socketserver" />
             <option value="$PROJECT_DIR$/sorketclient" />
             <option value="$PROJECT_DIR$/storage" />
+            <option value="$PROJECT_DIR$/subnetmask" />
             <option value="$PROJECT_DIR$/testtospeech" />
             <option value="$PROJECT_DIR$/url" />
             <option value="$PROJECT_DIR$/vibrate" />
