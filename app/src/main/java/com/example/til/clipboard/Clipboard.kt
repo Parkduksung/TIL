@@ -1,5 +1,6 @@
 package com.example.til.clipboard
 
+import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import androidx.core.content.getSystemService
@@ -20,6 +21,11 @@ class Clipboard {
 //        clipboardManager?.
     }
 
+    fun setClipboardTest(context: Context){
+        val clipboardManager = context.getSystemService<ClipboardManager>()
+        val clipData = ClipData.newPlainText("simple text", "Hello, World!")
+        clipboardManager?.setPrimaryClip(clipData)
+    }
 
 }
 

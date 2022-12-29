@@ -44,6 +44,7 @@ class ClipboardService : Service(), ClipboardManager.OnPrimaryClipChangedListene
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     private fun startBackground() {
         Log.d("결과", "startBackground")
+        clipboard.setClipboardTest(App.instance.context())
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
