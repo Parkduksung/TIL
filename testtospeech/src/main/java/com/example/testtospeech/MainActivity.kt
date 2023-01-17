@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.run).setOnClickListener {
             val text = editText?.text.toString()
-            tts.speakText(applicationContext,text)
+            tts.speakText(applicationContext, text, Locale.ENGLISH)
         }
     }
 
@@ -50,24 +50,27 @@ object TTSUtil {
         }
     }
 
-    private val onInitListener = TextToSpeech.OnInitListener { status ->
-        if (status == TextToSpeech.SUCCESS) {
-            tts!!.language = Locale.KOREA
-            tts!!.setPitch(1.0f)
-            tts!!.setSpeechRate(1.0f)
-        } else {
 
+    private val onInitListener: (Locale) -> TextToSpeech.OnInitListener = { language ->
+        TextToSpeech.OnInitListener { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                tts!!.language = language
+                tts!!.setPitch(1.0f)
+                tts!!.setSpeechRate(1.0f)
+            } else {
+
+            }
         }
     }
 
-    private fun init(context: Context) {
-        tts = TextToSpeech(context, onInitListener)
+    private fun init(context: Context, language: Locale) {
+        tts = TextToSpeech(context, onInitListener(language))
         tts?.setOnUtteranceProgressListener(utteranceProgressListener)
     }
 
-    fun speakText(context: Context, text: String) {
+    fun speakText(context: Context, text: String, language: Locale) {
         if (tts == null) {
-            init(context)
+            init(context, language)
         }
         val utteranceId = "utteranceId"
         tts?.speak(text, TextToSpeech.QUEUE_FLUSH, null, utteranceId)
