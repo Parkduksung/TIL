@@ -1,16 +1,24 @@
 package com.example.bancapture
 
+import android.content.Intent
 import android.view.View
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     fun captureOk(view: View) {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        RegisterActivityLifecycleCallbackImpl.getInstance().toggleBanCapture = false
+        onResume()
     }
 
     fun captureNo(view: View) {
-        window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+        RegisterActivityLifecycleCallbackImpl.getInstance().toggleBanCapture = true
+        onResume()
     }
+
+    fun routeSub(view: View) {
+        startActivity(Intent(this, SubActivity::class.java))
+    }
+
+
 }
